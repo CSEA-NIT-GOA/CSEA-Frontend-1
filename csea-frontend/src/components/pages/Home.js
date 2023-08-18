@@ -1,28 +1,30 @@
 import React from "react";
+import { useEffect } from "react";
 import Footer from "../Footer";
-import Gallery from "../Gallery";
+import Gallery from "../utilities/Gallery";
 import "../HeroSection";
-import Herosection from "../HeroSection";
 import "../../index.css";
-import Animation from "../animation";
-import Card from "../Announcements/Card";
-
+import Animation from "../utilities/animation";
+import Card from "../Teams/Card";
 import { v4 as uuidv4 } from "uuid";
 import EventCards from "../event/EventCards";
-import Event from "../event/event";
-import Teams from "../Announcements/Teams";
+import Teams from "../Teams/Teams";
 import Announcements from "../Announcements/Announcements";
 import LetterCard from "../newsletter/LetterCard";
+import Herosection from "../HeroSection";
+
+//Notices
+import PlacementTalk from "../images/Notices/PlacementTalk.png"
+import { Link } from "react-router-dom";
+
 let cards = [
   {
     key: uuidv4(),
     content: (
       <Card
-        imagen="https://updates.theme-fusion.com/wp-content/uploads/2016/08/slider_revolution-1.png"
-        title="Card1"
-        content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-                volutpat."
+        imagen="https://firebasestorage.googleapis.com/v0/b/csea-nitg.appspot.com/o/CoreMembers%2FAditya.jpg?alt=media&token=06bac3c8-3052-4cd6-959b-fd8140d776ce"
+        title="Aditya"
+        content="President"
       />
     ),
   },
@@ -30,11 +32,9 @@ let cards = [
     key: uuidv4(),
     content: (
       <Card
-        imagen="https://updates.theme-fusion.com/wp-content/uploads/2017/12/convertplus_thumbnail.jpg"
-        title="Card2"
-        content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-                volutpat."
+        imagen = "https://firebasestorage.googleapis.com/v0/b/csea-nitg.appspot.com/o/CoreMembers%2FJayendra.jpg?alt=media&token=8dc352af-bfad-47cd-b645-34de2ed36ba3"
+        title="Jayendra"
+        content="Vice President"
       />
     ),
   },
@@ -42,11 +42,9 @@ let cards = [
     key: uuidv4(),
     content: (
       <Card
-        imagen="https://updates.theme-fusion.com/wp-content/uploads/2017/12/acf_pro.png"
-        title="Card3"
-        content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-                volutpat."
+        imagen = "https://firebasestorage.googleapis.com/v0/b/csea-nitg.appspot.com/o/CoreMembers%2FVaibhav.jpg?alt=media&token=5acdb81e-ec1c-401f-afc2-b8f3ba495d8c"
+        title="Vaibhav Yadav"
+        content="Dy. General Secretary"
       />
     ),
   },
@@ -54,11 +52,9 @@ let cards = [
     key: uuidv4(),
     content: (
       <Card
-        imagen="https://updates.theme-fusion.com/wp-content/uploads/2017/12/layer_slider_plugin_thumb.png"
-        title="Card4"
-        content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-                volutpat."
+        imagen = "https://firebasestorage.googleapis.com/v0/b/csea-nitg.appspot.com/o/CoreMembers%2FAnn.jpg?alt=media&token=75df234f-bfb9-43e3-812e-a05e8591fd84"
+        title="Ann Mariya Roy"
+        content="General Secretary"
       />
     ),
   },
@@ -66,41 +62,17 @@ let cards = [
     key: uuidv4(),
     content: (
       <Card
-        imagen="https://updates.theme-fusion.com/wp-content/uploads/2016/08/slider_revolution-1.png"
-        title="Card5"
-        content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-                volutpat."
+        imagen = "https://firebasestorage.googleapis.com/v0/b/csea-nitg.appspot.com/o/CoreMembers%2FPritika.jpg?alt=media&token=a0f00e5e-65d5-44ed-a270-34c904f2459c"
+        title="Pritika Barshilia"
+        content="Joint Secretary"
       />
     ),
   },
-  // ,
-  // {
-  //   key: uuidv4(),
-  //   content: (
-  //     <Card imagen="https://updates.theme-fusion.com/wp-content/uploads/2016/08/slider_revolution-1.png"
-  //       title="Card6"
-  //       content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-  //               nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-  //               volutpat."
-  //     />
-  //   )
-  // },
-  // {
-  //   key: uuidv4(),
-  //   content: (
-  //     <Card imagen="https://updates.theme-fusion.com/wp-content/uploads/2019/01/pwa_880_660.jpg"
-  //       title="Card7"
-  //       content="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-  //               nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-  //               volutpat."
-  //     />
-  //   )
-  // }
 ];
 
 let events = {
   event1: {
+    background: PlacementTalk,
     title: "Go around the world",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate,praesentium voluptatem omnis atque culpa repellendus.",
@@ -108,37 +80,47 @@ let events = {
 };
 
 function Home() {
-  // (function(){
-  //   ('a[href*=#]').on('click', function(e) {
-  //       e.preventDefault();
-  //       ('html, body').animate({ scrollTop: ((this).attr('href')).offset().top}, 500, 'linear');
-  //     });
-  //   });
-
   return (
     <>
-      {/* <Event/>  */}
-      <div className="p-4 my-4 flex-auto justify-items-center">
+      <Herosection/>
+      <div className="mt-12">
         <Animation />
+      </div>
+      <div className="h-12" id="gallery"></div>
+      <div className="mb-12">
         <Gallery />
       </div>
-      <Teams cards={cards} />
-      <div className="p-5 my-3 flex justify-evenly max-[850px]:flex-col">
-        <div>
-          <div className="m-2 font-mono text-center font-extrabold text-7xl">
-            upcomming events
+      <Teams cards={cards} offset={2} />
+      <div id="features" className="h-[2rem]"></div>
+      <div className="p-5 my-3 flex justify-evenly max-[1200px]:flex-col" id="features">
+        <div className="flex-initial min-[1200px]:w-[55%]">
+          <div className="m-2 mb-4 text-center font-bold text-7xl max-sm:text-5xl max-sm:mt-20 text-black">
+            Upcoming events
           </div>
           <EventCards events={events.event1} />
-          <br></br>
-          <EventCards events={events.event1} />
+          {/* <br></br>
+          <EventCards events={events.event1} /> */}
         </div>
-        {/* <Announcements /> */}
+        <div className="flex-none min-[1200px]:w-[30%]">
+          <Announcements />
+        </div>
       </div>
-      <div className="m-2 font-mono text-center font-extrabold text-7xl">
-        Our Newsletter
+      <div className="text-black text-center">
+        <Link to={"/pastevents"}>
+          <button className="bg-transparent hover:bg-zinc-900 font-semibold hover:text-white py-4 px-12 border border-black hover:border-transparent rounded text-3xl">
+            Past Events
+          </button>
+        </Link>
       </div>
-      <LetterCard />
-      <LetterCard />
+      <div id="news" className="h-[2rem]"></div>
+      <div className="m-2 my-10 text-center font-bold text-7xl max-sm:text-5xl text-black">
+        Our Blogs
+      </div>
+      <div className="my-10">
+        <LetterCard />
+        {/* </div> */}
+        {/* <LetterCard /> */}
+      </div>
       <Footer />
     </>
   );

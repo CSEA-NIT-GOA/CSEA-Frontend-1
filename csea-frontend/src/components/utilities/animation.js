@@ -9,7 +9,7 @@ const Trail = ({ open, children }) => {
     config: { mass: 5, tension: 2000, friction: 200 },
     opacity: open ? 1 : 0,
     x: open ? 0 : 20,
-    height: open ? 110 : 0,
+    height: open ? 200 : 0,
     from: { opacity: 0, x: 0, height: 0 },
   })
   return (
@@ -23,18 +23,18 @@ const Trail = ({ open, children }) => {
   )
 }
 
-class MyComponent extends React.Component {
-  handleScroll = e => {
-    let element = e.target
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-      this.state = !this.state
-    }
-  }
-}
+// class MyComponent extends React.Component {
+//   handleScroll = e => {
+//     let element = e.target
+//     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+//       this.state = !this.state
+//     }
+//   }
+// }
 
 
 export default function Animation() {
-  const [open, set] = useState(true)
+  // const [open, set] = useState(true)
   const [offset, setOffset] = useState(0);
 
     useEffect(() => {
@@ -45,13 +45,14 @@ export default function Animation() {
     }, []);
 
     // console.log(offset); 
+    const textStyle = 'max-sm:text-7xl';
   return (
     <div className={styles.container} >
-      <div>
+      <div className='text-center'>
         <Trail open={offset>=300 && offset <=890}>
-          <span>Welcome</span>
-          <span>To</span>
-          <span>CSEA</span>
+          <span className={textStyle}>Welcome</span>
+          <span className={textStyle}>To</span>
+          <span className={textStyle}>CSEA</span>
         </Trail>
       </div>
     </div>

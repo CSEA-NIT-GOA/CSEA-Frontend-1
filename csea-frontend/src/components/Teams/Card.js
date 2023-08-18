@@ -6,10 +6,10 @@ function Card(props) {
   const [show, setShown] = useState(false);
 
   const props3 = useSpring({
-    transform: show ? "scale(1.03)" : "scale(1)",
+    transform: show ? "scale(1.1)" : "scale(1)",
     boxShadow: show
       ? "0 20px 25px rgb(0 0 0 / 25%)"
-      : "0 2px 10px rgb(0 0 0 / 8%)"
+      : "0 2px 10px rgb(0 0 0 / 12%)"
   });
   return (
     <animated.div
@@ -18,11 +18,11 @@ function Card(props) {
       onMouseEnter={() => setShown(true)}
       onMouseLeave={() => setShown(false)}
     >
-        <div>
-            <img src={props.imagen} alt="" />
-            <h2>{props.title}</h2>
-            <p>
-                {props.content}
+        <div className="">
+            <img src={props.imagen} alt="" className=""/>
+            <h2 className=" text-xl">{props.title}</h2>
+            <p className=" text-right font-bold">
+                -- {props.content}
             </p>
         </div>
     </animated.div>
